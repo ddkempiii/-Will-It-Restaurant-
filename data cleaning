@@ -1,0 +1,37 @@
+import pandas as pd
+
+df = pd.read_excel('../../data/Outscraper.xlsx')
+print(df.columns)
+import matplotlib.pyplot as plt
+import seaborn as sns
+df.groupby('type').rating.mean()
+df.price=[]
+price_mapping = {'$': 1, '$$': 2, '$$$': 3, '$$$$': 4}
+df['price'] = df['range'].map(price_mapping) 
+plt.figure(figsize=(10,6))
+sns.scatterplot(data=df, x='rating',y='price',hue='type')
+plt.show()
+sns.scatterplot(data=df, x='rating',y='price')
+plt.show
+
+def categorize(text):
+    for category, keywords in keyword_map.items():
+        if any(keyword.lower() in text.lower() for keyword in keywords):
+            return category
+    return "other"  
+keyword_map = {
+    "Asian food": ["Vietnamese", "Sichuan","Janpanese"],
+    "Europe and US food": ["Italian","European","America","Western","US"],
+    "Fast food": ["Pizza"],
+    "Vegan food":["Vegan"]
+}
+df["category"] = df["type"].astype(str).apply(categorize)
+df.groupby('type').rating.mean()
+df.price=[]
+price_mapping = {'$': 1, '$$': 2, '$$$': 3, '$$$$': 4}
+df['price'] = df['range'].map(price_mapping) 
+plt.figure(figsize=(10,6))
+sns.scatterplot(data=df, x='rating',y='price',hue='category')
+plt.show()
+sns.scatterplot(data=df, x='rating',y='price')
+plt.show()
