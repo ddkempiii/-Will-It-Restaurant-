@@ -20,10 +20,65 @@ def categorize(text):
             return category
     return "other"  
 keyword_map = {
-    "Asian food": ["Vietnamese", "Sichuan","Janpanese"],
-    "Europe and US food": ["Italian","European","America","Western","US"],
-    "Fast food": ["Pizza"],
-    "Vegan food":["Vegan"]
+    "Asian food": [
+        "Vietnamese", "Sichuan", "Japanese", "Indonesian", "Thai", "Chinese", 
+        "Korean", "Filipino", "Malaysian", "Taiwanese", "Pakistani", "Afghan", 
+        "Nepalese", "Tibetan", "Cambodian", "Asian", "Pan-Asian", "Southeast Asian",
+        "Dan Dan", "Pho", "Shabu-shabu", "Ramen"
+    ],
+    "European and US food": [
+        "Italian", "European", "American", "Western", "US", "French", "Irish", 
+        "Greek", "Portuguese", "German", "Spanish", "Swedish", "Polish", 
+        "British", "Dutch", "Modern European", "Mid-Atlantic", "Southern Italian"
+    ],
+    "African food": [
+        "Ethiopian", "Eritrean", "Moroccan", "Tunisian", "West African", "African"
+    ],
+    "Middle Eastern food": [
+        "Lebanese", "Israeli", "Turkish", "Halal", "Kosher", "Georgian", "Yemeni"
+    ],
+    "Latin American and Caribbean food": [
+        "Mexican", "Honduran", "Salvadoran", "Guatemalan", "Colombian", 
+        "Brazilian", "Argentinian", "Peruvian", "Puerto Rican", "Cuban", 
+        "Venezuelan", "Latin American", "Caribbean"
+    ],
+    "Indian food": [
+        "Indian", "Modern Indian", "South Indian", "Indian takeaway"
+    ],
+    "Fast food": [
+        "Pizza", "Fast food", "Fried chicken", "Hot dog", "Burger", 
+        "Takeout", "Delivery", "Wings", "Donut", "Burrito", "Taco"
+    ],
+    "Vegan and healthy food": [
+        "Vegan", "Vegetarian", "Organic", "Health food", "Salad", "Raw food", 
+        "Juice", "Açaí", "Fresh food"
+    ],
+    "Desserts and snacks": [
+        "Ice cream", "Dessert", "Snack", "Pretzel", "Bakery", "Creperie", "Donut"
+    ],
+    "Drinks and bars": [
+        "Bar", "Cocktail", "Pub", "Brewery", "Beer", "Wine", "Liquor", 
+        "Beer garden", "Brewpub", "Karaoke", "Hookah", "Lounge", "Club", 
+        "Sports bar", "Coffee", "Tea", "Juice"
+    ],
+    "Seafood": [
+        "Seafood", "Crab", "Oyster", "Fish & chips"
+    ],
+    "Buffet and mixed cuisine": [
+        "Buffet", "Fusion", "Eclectic", "Dim sum", "Asian fusion"
+    ],
+    "Specialty or ethnic": [
+        "Cambodian", "Uzbeki", "Ecuadorian", "Georgian", "Jewish", "Bangladeshi", "Laotian"
+    ],
+    "Catering and service": [
+        "Caterer", "Catering", "Personal chef", "Mobile caterer", "Cooking class", 
+        "Event", "Entertainment", "Catering equipment"
+    ],
+    "Other / uncategorized": [
+        "Market", "Grocery", "Store", "Mall", "Hotel", "Bed & breakfast", 
+        "Convenience store", "Food court", "Shopping", "Self service", 
+        "Association", "Vitamin", "Smoke shop", "Lingerie"
+    ]
 }
 df["category"] = df["type"].astype(str).apply(categorize)
 df.groupby('type').rating.mean()
